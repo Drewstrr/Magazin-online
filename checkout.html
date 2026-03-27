@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finalizează Comanda — Pear</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo">Pear<span class="logo__dot">.</span></a>
+      <nav class="nav">
+        <a href="index.html" class="nav__link">Acasă</a>
+        <a href="index.html#produse" class="nav__link">Produse</a>
+      </nav>
+      <a href="index.html" class="cart-btn" style="font-size:0.85rem;font-weight:600;color:var(--muted);">← Înapoi</a>
+    </div>
+  </header>
+
+  <!-- CHECKOUT -->
+  <main class="checkout">
+    <div class="checkout__container">
+
+      <!-- Title -->
+      <div class="checkout__heading">
+        <p class="checkout__step">Pasul final</p>
+        <h1 class="checkout__title">Finalizează <span class="hero__highlight">Comanda</span></h1>
+        <p class="checkout__sub">Completează datele de mai jos și te contactăm pentru confirmare.</p>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="checkout__summary" id="checkoutSummary">
+        <h3 class="summary__title">Rezumatul Comenzii</h3>
+        <div class="summary__items" id="summaryItems">
+          <p class="cart-empty">Coșul tău este gol. <a href="index.html">Înapoi la produse →</a></p>
+        </div>
+        <div class="summary__total" id="summaryTotal" style="display:none;">
+          <span>Total</span>
+          <span id="summaryTotalValue"></span>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form class="checkout__form" id="checkoutForm" novalidate>
+
+        <div class="form-group">
+          <label for="name" class="form-label">Nume complet <span class="required">*</span></label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-input"
+            placeholder="ex: Ion Popescu"
+            autocomplete="name"
+          />
+          <span class="form-error" id="nameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="address" class="form-label">Adresă de livrare <span class="required">*</span></label>
+          <textarea
+            id="address"
+            name="address"
+            class="form-input form-textarea"
+            placeholder="Stradă, număr, bloc, apartament, oraș, județ..."
+            autocomplete="street-address"
+            rows="3"
+          ></textarea>
+          <span class="form-error" id="addressError"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone" class="form-label">Telefon <span class="required">*</span></label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form-input"
+              placeholder="ex: 07XX XXX XXX"
+              autocomplete="tel"
+            />
+            <span class="form-error" id="phoneError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email <span class="required">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="ex: ion@email.com"
+              autocomplete="email"
+            />
+            <span class="form-error" id="emailError"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes" class="form-label">Mențiuni (opțional)</label>
+          <textarea
+            id="notes"
+            name="notes"
+            class="form-input form-textarea"
+            placeholder="Orice detalii suplimentare pentru livrare..."
+            rows="2"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--checkout" id="submitBtn">
+          <span id="submitText">Finalizează Comanda</span>
+          <svg id="submitIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </button>
+
+      </form>
+
+      <!-- Success Message -->
+      <div class="checkout__success" id="checkoutSuccess" style="display:none;">
+        <div class="success__icon">✓</div>
+        <h2 class="success__title">Comandă plasată!</h2>
+        <p class="success__msg">Îți mulțumim! Te vom contacta în curând pentru confirmare.</p>
+        <a href="index.html" class="btn btn--primary" style="margin-top:1.5rem;display:inline-block;">
+          Înapoi la magazin
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/checkout.js"></script>
+</body>
+</html>

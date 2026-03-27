@@ -51,8 +51,8 @@ const products = [
   },
 ];
 
-// ---- Cart State ----
-let cart = [];
+// ---- Cart State (persisted in localStorage) ----
+let cart = JSON.parse(localStorage.getItem("pearCart") || "[]");
 
 // ---- DOM References ----
 const productsList = document.getElementById("productsList");
@@ -113,6 +113,7 @@ function addToCart(id, btn) {
     btn.classList.remove("added");
   }, 1200);
 
+  saveCart();
   updateBadge();
   renderCartItems();
   openCart();
@@ -120,6 +121,7 @@ function addToCart(id, btn) {
 
 function removeFromCart(id) {
   cart = cart.filter(i => i.id !== id);
+  saveCart();
   updateBadge();
   renderCartItems();
 }
@@ -132,8 +134,13 @@ function changeQty(id, delta) {
     removeFromCart(id);
     return;
   }
+  saveCart();
   updateBadge();
   renderCartItems();
+}
+
+function saveCart() {
+  localStorage.setItem("pearCart", JSON.stringify(cart));
 }
 
 function updateBadge() {
