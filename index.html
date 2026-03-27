@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pear — Kendama Shop</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#home" class="logo">Pear<span class="logo__dot">.</span></a>
+      <nav class="nav">
+        <a href="#home" class="nav__link active">Acasă</a>
+        <a href="#produse" class="nav__link">Produse</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn" aria-label="Coș de cumpărături">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero__content">
+      <p class="hero__eyebrow">Nou în România</p>
+      <h1 class="hero__title">Arta <span class="hero__highlight">Kendama</span><br/>în mâinile tale.</h1>
+      <p class="hero__sub">Descoperă kendama — jucăria japoneză care te provoacă, te relaxează și te fascinează.</p>
+      <a href="#produse" class="btn btn--primary">Vezi Produsele</a>
+    </div>
+    <div class="hero__visual">
+      <div class="hero__blob blob--1"></div>
+      <div class="hero__blob blob--2"></div>
+      <div class="hero__blob blob--3"></div>
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Kendama" class="hero__img" onerror="this.style.display='none'" />
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTS ===== -->
+  <section class="products" id="produse">
+    <div class="products__header">
+      <h2 class="products__title">Produsele <span class="highlight">Noastre</span></h2>
+      <p class="products__sub">Fiecare kendama este atent selectată pentru calitate și stil.</p>
+    </div>
+    <div class="products__list" id="productsList"></div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="logo">Pear<span class="logo__dot">.</span></span>
+        <p>Kendama pentru toți — începători sau profesioniști.</p>
+      </div>
+      <div class="footer__contact">
+        <h4>Contact</h4>
+        <p>Email: <a href="mailto:contact@pear.ro">contact@pear.ro</a></p>
+        <p>Tel: <a href="tel:+40700000000">+40 700 000 000</a></p>
+        <p>București, România</p>
+      </div>
+      <div class="footer__social">
+        <h4>Social</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/>
+            </svg>
+            TikTok
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Pear. Toate drepturile rezervate.</p>
+    </div>
+  </footer>
+
+  <!-- ===== CART SIDE PANEL ===== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-panel__header">
+      <h3>Coșul Tău</h3>
+      <button class="cart-close" id="cartClose" aria-label="Închide coșul">&times;</button>
+    </div>
+    <div class="cart-panel__items" id="cartItems">
+      <p class="cart-empty">Coșul tău este gol.</p>
+    </div>
+    <div class="cart-panel__footer" id="cartFooter" style="display:none;">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">0 RON</span>
+      </div>
+      <button class="btn btn--primary btn--full">Finalizează Comanda</button>
+    </div>
+  </aside>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
