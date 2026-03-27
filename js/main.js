@@ -7,47 +7,52 @@ const products = [
   {
     id: 1,
     name: "Kendama Classic Roșu",
-    desc: "Kendama tradițională japoneză cu finisaj mat, perfectă pentru începători. Lemn de fag de calitate superioară, vopsea durabilă.",
+    desc: "Roșu aprins. Minte focalizată.\nPrimul trick schimbă totul.",
     price: 89,
     tag: "Bestseller",
     tagColor: "#ff6b35",
-    img: "https://images.unsplash.com/photo-1598030343246-eec71c26b5a6?w=300&q=80",
+    gradient: "linear-gradient(135deg, #ff6b35 0%, #c0392b 100%)",
+    accent: "#ff6b35",
   },
   {
     id: 2,
     name: "Kendama Pro Negru",
-    desc: "Pentru jucători avansați. Design ergonomic cu grip special, balanță optimă pentru trick-uri complexe și competiții.",
+    desc: "Fără culoare. Fără zgomot.\nDoar precizie pură.",
     price: 149,
     tag: "Pro",
     tagColor: "#00d9ff",
-    img: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=300&q=80",
+    gradient: "linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%)",
+    accent: "#00d9ff",
   },
   {
     id: 3,
     name: "Kendama Junior Albastru",
-    desc: "Ideală pentru copii și adolescenți. Dimensiuni reduse, greutate mică, ușor de mânuit. Perfectă cadou pentru copii curioși.",
+    desc: "Mâini mici. Vise mari.\nPrima kendama contează.",
     price: 59,
     tag: "Junior",
     tagColor: "#c8ff00",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80",
+    gradient: "linear-gradient(135deg, #1e90ff 0%, #00b4db 100%)",
+    accent: "#c8ff00",
   },
   {
     id: 4,
     name: "Kendama Premium Multicolor",
-    desc: "Ediție limitată cu finisaj unic multicolor. Fiecare bucată este unică. Lemn de arțar importat, echilibrată manual.",
+    desc: "Nu există două la fel.\nLa fel ca tine.",
     price: 199,
     tag: "Limited",
     tagColor: "#ff3cac",
-    img: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&q=80",
+    gradient: "linear-gradient(135deg, #ff3cac 0%, #a259ff 50%, #ff6b35 100%)",
+    accent: "#ff3cac",
   },
   {
     id: 5,
     name: "Kendama Starter Kit",
-    desc: "Tot ce ai nevoie ca să începi: kendama + ghid de tricks pentru începători + șnur de rezervă. Ambalaj cadou inclus.",
+    desc: "Ziua 1: confuz.\nZiua 7: obsedat. Ziua 30: legendă.",
     price: 109,
     tag: "Kit",
     tagColor: "#a259ff",
-    img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&q=80",
+    gradient: "linear-gradient(135deg, #a259ff 0%, #6c3fc5 100%)",
+    accent: "#a259ff",
   },
 ];
 
@@ -68,19 +73,37 @@ const cartTotal    = document.getElementById("cartTotal");
 // =============================================
 //  RENDER PRODUCTS
 // =============================================
+const kendamaSVG = (accent) => `
+  <svg viewBox="0 0 80 160" xmlns="http://www.w3.org/2000/svg" style="width:56px;height:auto;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.3))">
+    <!-- Ball -->
+    <circle cx="40" cy="22" r="20" fill="rgba(255,255,255,0.95)" />
+    <circle cx="33" cy="15" r="5" fill="rgba(255,255,255,0.4)" />
+    <!-- String -->
+    <line x1="40" y1="42" x2="40" y2="70" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Sakazuki (big cup) -->
+    <path d="M14 70 Q10 90 40 92 Q70 90 66 70 Z" fill="rgba(255,255,255,0.9)"/>
+    <!-- Ken body -->
+    <rect x="32" y="92" width="16" height="34" rx="5" fill="rgba(255,255,255,0.85)"/>
+    <!-- Kengata (small cup) -->
+    <path d="M26 92 Q24 100 40 101 Q56 100 54 92 Z" fill="rgba(255,255,255,0.6)"/>
+    <!-- Spike -->
+    <polygon points="40,126 34,144 46,144" fill="rgba(255,255,255,0.8)"/>
+    <!-- Spike tip -->
+    <circle cx="40" cy="148" r="3.5" fill="${accent}" />
+  </svg>
+`;
+
 function renderProducts() {
   productsList.innerHTML = products.map(p => `
     <div class="product-card" data-id="${p.id}">
-      <img
-        class="product-card__img"
-        src="${p.img}"
-        alt="${p.name}"
-        onerror="this.src='https://placehold.co/200x160/181818/888?text=Kendama'"
-      />
+      <div class="product-card__visual" style="background:${p.gradient};">
+        <div class="product-card__glow" style="background:${p.accent};"></div>
+        ${kendamaSVG(p.accent)}
+      </div>
       <div class="product-card__info">
         <span class="product-card__tag" style="background:${p.tagColor}22;color:${p.tagColor}">${p.tag}</span>
         <h3 class="product-card__name">${p.name}</h3>
-        <p class="product-card__desc">${p.desc}</p>
+        <p class="product-card__desc">${p.desc.replace(/\n/g, '<br>')}</p>
       </div>
       <div class="product-card__action">
         <span class="product-card__price">${p.price} RON</span>
@@ -159,12 +182,16 @@ function renderCartItems() {
 
   cartItems.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <img
-        class="cart-item__img"
-        src="${item.img}"
-        alt="${item.name}"
-        onerror="this.src='https://placehold.co/70x60/181818/888?text=K'"
-      />
+      <div class="cart-item__img" style="background:${item.gradient};display:flex;align-items:center;justify-content:center;border-radius:8px;overflow:hidden;">
+        <svg viewBox="0 0 80 160" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:auto;">
+          <circle cx="40" cy="22" r="20" fill="rgba(255,255,255,0.95)"/>
+          <line x1="40" y1="42" x2="40" y2="70" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M14 70 Q10 90 40 92 Q70 90 66 70 Z" fill="rgba(255,255,255,0.9)"/>
+          <rect x="32" y="92" width="16" height="34" rx="5" fill="rgba(255,255,255,0.85)"/>
+          <polygon points="40,126 34,144 46,144" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="40" cy="148" r="3.5" fill="${item.accent}"/>
+        </svg>
+      </div>
       <div>
         <p class="cart-item__name">${item.name}</p>
         <p class="cart-item__price">${item.price} RON / buc</p>

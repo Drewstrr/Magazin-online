@@ -14,6 +14,7 @@ if (cart.length === 0) {
 } else {
   summaryItems.innerHTML = cart.map(item => `
     <div class="summary__item">
+      <span class="summary__item-dot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${item.accent || '#ff6b35'};flex-shrink:0;margin-right:0.3rem;"></span>
       <span class="summary__item-name">${item.name}</span>
       <span class="summary__item-qty">x${item.qty}</span>
       <span class="summary__item-price">${item.price * item.qty} RON</span>
