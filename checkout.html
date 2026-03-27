@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finalizează Comanda — Pear</title>
+  <title>Finalizează Comanda — Pear Kendama</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Finalizează comanda ta de kendama pe Pear. Plată securizată cu cardul, livrare rapidă în toată România." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://drewstrr.github.io/Magazin-online/checkout.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Checkout — Pear Kendama" />
+  <meta property="og:description" content="Finalizează comanda ta în siguranță." />
+  <meta property="og:url" content="https://drewstrr.github.io/Magazin-online/checkout.html" />
+
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/checkout.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,13 +41,26 @@
 
       <!-- Title -->
       <div class="checkout__heading">
-        <p class="checkout__step">Pasul final</p>
+        <p class="checkout__step">Comandă securizată</p>
         <h1 class="checkout__title">Finalizează <span class="hero__highlight">Comanda</span></h1>
-        <p class="checkout__sub">Completează datele de mai jos și te contactăm pentru confirmare.</p>
+        <p class="checkout__sub">Completează datele de livrare și plată pentru a finaliza comanda.</p>
+      </div>
+
+      <!-- Steps indicator -->
+      <div class="steps">
+        <div class="step active" id="step1Ind">
+          <div class="step__circle">1</div>
+          <span>Livrare</span>
+        </div>
+        <div class="step__line"></div>
+        <div class="step" id="step2Ind">
+          <div class="step__circle">2</div>
+          <span>Plată</span>
+        </div>
       </div>
 
       <!-- Order Summary -->
-      <div class="checkout__summary" id="checkoutSummary">
+      <div class="checkout__summary">
         <h3 class="summary__title">Rezumatul Comenzii</h3>
         <div class="summary__items" id="summaryItems">
           <p class="cart-empty">Coșul tău este gol. <a href="index.html">Înapoi la produse →</a></p>
@@ -46,89 +71,138 @@
         </div>
       </div>
 
-      <!-- Form -->
-      <form class="checkout__form" id="checkoutForm" novalidate>
+      <!-- ===== STEP 1: Delivery ===== -->
+      <form class="checkout__form" id="deliveryForm" novalidate>
+        <h3 class="form__section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+          Date de Livrare
+        </h3>
 
         <div class="form-group">
           <label for="name" class="form-label">Nume complet <span class="required">*</span></label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="form-input"
-            placeholder="ex: Ion Popescu"
-            autocomplete="name"
-          />
+          <input type="text" id="name" name="name" class="form-input" placeholder="ex: Ion Popescu" autocomplete="name" />
           <span class="form-error" id="nameError"></span>
         </div>
 
         <div class="form-group">
           <label for="address" class="form-label">Adresă de livrare <span class="required">*</span></label>
-          <textarea
-            id="address"
-            name="address"
-            class="form-input form-textarea"
-            placeholder="Stradă, număr, bloc, apartament, oraș, județ..."
-            autocomplete="street-address"
-            rows="3"
-          ></textarea>
+          <textarea id="address" name="address" class="form-input form-textarea" placeholder="Stradă, număr, bloc, apartament, oraș, județ..." autocomplete="street-address" rows="3"></textarea>
           <span class="form-error" id="addressError"></span>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="phone" class="form-label">Telefon <span class="required">*</span></label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="form-input"
-              placeholder="ex: 07XX XXX XXX"
-              autocomplete="tel"
-            />
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="07XX XXX XXX" autocomplete="tel" />
             <span class="form-error" id="phoneError"></span>
           </div>
-
           <div class="form-group">
             <label for="email" class="form-label">Email <span class="required">*</span></label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-input"
-              placeholder="ex: ion@email.com"
-              autocomplete="email"
-            />
+            <input type="email" id="email" name="email" class="form-input" placeholder="ion@email.com" autocomplete="email" />
             <span class="form-error" id="emailError"></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="notes" class="form-label">Mențiuni (opțional)</label>
-          <textarea
-            id="notes"
-            name="notes"
-            class="form-input form-textarea"
-            placeholder="Orice detalii suplimentare pentru livrare..."
-            rows="2"
-          ></textarea>
+          <textarea id="notes" name="notes" class="form-input form-textarea" placeholder="Detalii suplimentare pentru livrare..." rows="2"></textarea>
         </div>
 
-        <button type="submit" class="btn btn--primary btn--checkout" id="submitBtn">
-          <span id="submitText">Finalizează Comanda</span>
-          <svg id="submitIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <button type="submit" class="btn btn--primary btn--checkout">
+          Continuă spre Plată
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
           </svg>
         </button>
-
       </form>
 
-      <!-- Success Message -->
+      <!-- ===== STEP 2: Payment ===== -->
+      <form class="checkout__form" id="paymentForm" novalidate style="display:none;">
+        <h3 class="form__section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Date Card
+        </h3>
+
+        <!-- Card Preview -->
+        <div class="card-preview" id="cardPreview">
+          <div class="card-preview__top">
+            <span class="card-preview__bank">Pear Pay</span>
+            <span class="card-preview__type" id="cardTypeLabel">
+              <svg id="cardTypeVisa" xmlns="http://www.w3.org/2000/svg" width="40" height="14" viewBox="0 0 40 14" style="display:none;fill:white;"><text x="0" y="12" font-size="14" font-weight="900" font-family="Inter,sans-serif">VISA</text></svg>
+              <svg id="cardTypeMC" viewBox="0 0 38 24" width="38" height="24" style="display:none;"><circle cx="15" cy="12" r="10" fill="#EB001B" opacity="0.9"/><circle cx="23" cy="12" r="10" fill="#F79E1B" opacity="0.9"/><path d="M19 5.27a10 10 0 010 13.46A10 10 0 0119 5.27z" fill="#FF5F00" opacity="0.9"/></svg>
+            </span>
+          </div>
+          <div class="card-preview__chip">
+            <div class="chip"></div>
+          </div>
+          <div class="card-preview__number" id="previewNumber">•••• •••• •••• ••••</div>
+          <div class="card-preview__bottom">
+            <div>
+              <div class="card-preview__label">Titular</div>
+              <div class="card-preview__value" id="previewName">NUMELE TĂU</div>
+            </div>
+            <div>
+              <div class="card-preview__label">Expiră</div>
+              <div class="card-preview__value" id="previewExpiry">MM/YY</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cardNumber" class="form-label">Număr card <span class="required">*</span></label>
+          <div class="input-icon-wrap">
+            <input type="text" id="cardNumber" name="cardNumber" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric" autocomplete="cc-number" />
+            <span class="input-icon" id="cardIcon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </span>
+          </div>
+          <span class="form-error" id="cardNumberError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="cardName" class="form-label">Numele titularului <span class="required">*</span></label>
+          <input type="text" id="cardName" name="cardName" class="form-input" placeholder="ION POPESCU" autocomplete="cc-name" style="text-transform:uppercase;" />
+          <span class="form-error" id="cardNameError"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cardExpiry" class="form-label">Data expirării <span class="required">*</span></label>
+            <input type="text" id="cardExpiry" name="cardExpiry" class="form-input" placeholder="MM/YY" maxlength="5" inputmode="numeric" autocomplete="cc-exp" />
+            <span class="form-error" id="cardExpiryError"></span>
+          </div>
+          <div class="form-group">
+            <label for="cardCvv" class="form-label">
+              CVV <span class="required">*</span>
+              <span class="cvv-hint" title="3 cifre pe spatele cardului">?</span>
+            </label>
+            <input type="password" id="cardCvv" name="cardCvv" class="form-input" placeholder="•••" maxlength="4" inputmode="numeric" autocomplete="cc-csc" />
+            <span class="form-error" id="cardCvvError"></span>
+          </div>
+        </div>
+
+        <div class="secure-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Plată securizată 256-bit SSL — simulare demo, nu se procesează date reale
+        </div>
+
+        <div class="form-row" style="gap:1rem;margin-top:0.5rem;">
+          <button type="button" class="btn btn--back" id="backToDelivery">← Înapoi</button>
+          <button type="submit" class="btn btn--primary btn--checkout" id="payBtn" style="flex:1;">
+            <span id="payText">Plătește Acum</span>
+            <svg id="payIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- ===== SUCCESS ===== -->
       <div class="checkout__success" id="checkoutSuccess" style="display:none;">
         <div class="success__icon">✓</div>
-        <h2 class="success__title">Comandă plasată!</h2>
-        <p class="success__msg">Îți mulțumim! Te vom contacta în curând pentru confirmare.</p>
-        <a href="index.html" class="btn btn--primary" style="margin-top:1.5rem;display:inline-block;">
+        <p class="success__order-label">Numărul comenzii tale</p>
+        <h2 class="success__order-number" id="orderNumber">#PEAR-000000</h2>
+        <h3 class="success__title">Plată confirmată!</h3>
+        <p class="success__msg">Îți mulțumim! Vei primi un email de confirmare în curând.<br/>Comanda va fi livrată în 2–4 zile lucrătoare.</p>
+        <a href="index.html" class="btn btn--primary" style="margin-top:2rem;display:inline-block;">
           Înapoi la magazin
         </a>
       </div>

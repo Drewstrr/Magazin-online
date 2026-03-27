@@ -204,7 +204,34 @@ cartOverlay.addEventListener("click", closeCart);
 
 // Close on Escape key
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeCart();
+  if (e.key === "Escape") { closeCart(); closeMenu(); }
+});
+
+// =============================================
+//  HAMBURGER MENU
+// =============================================
+const hamburger  = document.getElementById("hamburger");
+const nav        = document.getElementById("nav");
+const navOverlay = document.getElementById("navOverlay");
+
+function openMenu() {
+  hamburger.classList.add("open");
+  nav.classList.add("open");
+  navOverlay.classList.add("active");
+  hamburger.setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMenu() {
+  hamburger.classList.remove("open");
+  nav.classList.remove("open");
+  navOverlay.classList.remove("active");
+  hamburger.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+}
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.contains("open") ? closeMenu() : openMenu();
 });
 
 // =============================================
